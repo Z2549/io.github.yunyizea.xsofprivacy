@@ -1,16 +1,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application android:label="XSOF Privacy Preview" android:allowBackup="false">
+        <!-- 设置入口：只挂 MODULE_SETTINGS。桌面图标被隐藏后，这里是唯一的恢复路径 -->
         <activity android:name=".SettingsActivity" android:exported="true"
             android:label="@string/settings_title" android:theme="@android:style/Theme.DeviceDefault.Settings">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
             </intent-filter>
         </activity>
+        <!-- 桌面入口：隐藏图标只禁用这个 alias，SettingsActivity 本身不受影响。
+             name 必须写完整类名（alias 不参与包名前缀展开），需与 LauncherIcon.java 里的常量一致 -->
+        <activity-alias
+            android:name="io.github.yunyizea.xsofprivacy.LauncherEntry"
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/settings_title"
+            android:targetActivity=".SettingsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
         <provider android:name=".LoggingSettingsProvider"
             android:authorities="io.github.yunyizea.xsofprivacy.settings"
             android:exported="true" android:grantUriPermissions="false" />

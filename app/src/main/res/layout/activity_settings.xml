@@ -30,6 +30,21 @@
             android:layout_marginTop="12dp"
             android:text="@string/detailed_logging_description"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+        <Switch
+            android:id="@+id/hide_launcher_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:minHeight="64dp"
+            android:saveEnabled="false"
+            android:text="@string/hide_launcher_icon_title"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/hide_launcher_icon_description"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
